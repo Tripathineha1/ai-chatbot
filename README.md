@@ -1,21 +1,25 @@
-# AI Chatbot Admin Panel
+# AI Chatbot Admin Panel (SuperJinni)
 
-A modern, responsive admin panel for an AI-enhanced chatbot system, inspired by Intercom's interface. This project showcases a clean UI with real-time chat capabilities, AI assistance features, and a comprehensive admin dashboard.
+A modern, responsive admin panel for an AI-enhanced chatbot system with SuperJinni integration. This project showcases a clean UI with real-time chat capabilities, AI assistance features, and a comprehensive admin dashboard.
 
-![Intercom-like AI Chatbot](https://ai-chatbot-7wrk5geip-tripathineha1s-projects.vercel.app/screenshot.png) <!-- Screenshot of deployed application -->
+![SuperJinni AI Chatbot](/screenshot.png)
 
 ## Live Demo
 
-[View the live demo here](https://ai-chatbot-7wrk5geip-tripathineha1s-projects.vercel.app) <!-- Deployed on Vercel -->
+[View the live demo here](https://ai-chatbot-khaki-three.vercel.app/)
 
 ## Features
 
 - **Modern UI**: Clean, intuitive interface with smooth animations and transitions
+- **Three-Column Layout**: Sidebar, Inbox, and SuperJinni panel for optimal workflow
 - **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
 - **Interactive Chat Interface**: Real-time chat with typing indicators and message history
-- **AI Assistance Panel**: AI-powered message suggestions and templates
+- **Voice Message Recording**: Record and play voice messages directly in the chat
+- **Translation Features**: Support for Spanish, French, German, and Hindi translations
+- **SuperJinni AI Assistant**: AI-powered message suggestions and contextual help
 - **Conversation Management**: Filter and search through customer conversations
 - **Mobile-First Approach**: Optimized for both desktop and mobile experiences
+- **Dark/Light Mode**: Support for different visual preferences
 
 ## Tech Stack
 
