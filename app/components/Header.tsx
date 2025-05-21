@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu, Bell, ChevronDown, User, Settings, HelpCircle, LogOut, Moon, Sun } from 'lucide-react';
+import { Menu, Bell, ChevronDown, User, Settings, HelpCircle, LogOut, Moon, Sun, Bot } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -10,9 +10,11 @@ interface HeaderProps {
   isSidebarOpen: boolean;
   activeView: 'chat' | 'contacts';
   setActiveView: (view: 'chat' | 'contacts') => void;
+  toggleAIJinni?: () => void;
+  isAIJinniOpen?: boolean;
 }
 
-export default function Header({ toggleSidebar, isSidebarOpen, activeView, setActiveView }: HeaderProps) {
+export default function Header({ toggleSidebar, isSidebarOpen, activeView, setActiveView, toggleAIJinni, isAIJinniOpen }: HeaderProps) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -97,6 +99,18 @@ export default function Header({ toggleSidebar, isSidebarOpen, activeView, setAc
               <Moon size={20} className="text-gray-600" />
             )}
           </motion.button>
+          
+          {toggleAIJinni && !isMobile && (
+            <motion.button 
+              onClick={toggleAIJinni}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={isAIJinniOpen ? "Hide AI Jinni" : "Show AI Jinni"}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Bot size={20} className={`text-gray-600 dark:text-gray-300 ${isAIJinniOpen ? 'text-blue-500 dark:text-blue-400' : ''}`} />
+            </motion.button>
+          )}
           
           <motion.button 
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 relative transition-colors"

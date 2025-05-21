@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { Info, X, Send, ArrowDown, ArrowUp, Mic, StopCircle, Play, Pause, Globe } from 'lucide-react';
 
 interface AIJinniProps {
-  isOpen: boolean;
-  onClose: () => void;
-  conversation: any[];
+  isOpen?: boolean;
+  onClose?: () => void;
+  conversation?: any[];
   addToComposer?: (text: string) => void;
 }
 
@@ -28,6 +28,9 @@ export default function AIJinni({ isOpen, onClose, conversation, addToComposer }
   const [currentlyPlaying, setCurrentlyPlaying] = useState<string | null>(null);
   const [translatedMessages, setTranslatedMessages] = useState<{[key: string]: string}>({});
   const [targetLanguage, setTargetLanguage] = useState('es'); // Default to Spanish
+  
+  // Use an empty array if conversation is not provided
+  const currentConversation = conversation || [];
   
   // Voice recording states
   const [isRecording, setIsRecording] = useState(false);
@@ -113,8 +116,8 @@ export default function AIJinni({ isOpen, onClose, conversation, addToComposer }
   // Dynamic content based on conversation
   const getRelevantContent = () => {
     // Look at the messages to determine the topic
-    const messages = conversation || [];
-    const messageText = messages.map(m => m.message.toLowerCase()).join(' ');
+    const messages = currentConversation || [];
+    const messageText = messages.map(m => m.message?.toLowerCase() || '').join(' ');
     
     // Different content based on topic detection
     if (messageText.includes('refund') || messageText.includes('money back') || messageText.includes('return')) {

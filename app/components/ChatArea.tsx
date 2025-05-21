@@ -81,6 +81,7 @@ const mockUsers = {
 interface ChatAreaProps {
   activeChat: string | null;
   toggleSidebar?: () => void;
+  showAIJinni?: boolean;
 }
 
 // Customer waiting notification component
@@ -93,7 +94,7 @@ function CustomerWaitingNotification({ minutes = 5 }) {
   );
 }
 
-export default function ChatArea({ activeChat, toggleSidebar }: ChatAreaProps) {
+export default function ChatArea({ activeChat, toggleSidebar, showAIJinni }: ChatAreaProps) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -700,7 +701,7 @@ export default function ChatArea({ activeChat, toggleSidebar }: ChatAreaProps) {
       </div>
       
       {/* AI Copilot */}
-      {isAssistantOpen && (
+      {isAssistantOpen && showAIJinni !== false && (
         <div className="hidden md:block w-1/3 max-w-md">
           <AIJinni 
             isOpen={isAssistantOpen} 
@@ -712,7 +713,7 @@ export default function ChatArea({ activeChat, toggleSidebar }: ChatAreaProps) {
       )}
       
       {/* Mobile AI Copilot */}
-      {isMobile && isAssistantOpen && (
+      {isMobile && isAssistantOpen && showAIJinni !== false && (
         <div className="fixed inset-0 z-50 bg-black/50">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute inset-y-0 right-0 max-w-full flex">
@@ -779,14 +780,16 @@ export default function ChatArea({ activeChat, toggleSidebar }: ChatAreaProps) {
           
           <div className="flex ml-2">
             <div className="flex items-center space-x-1 mr-2">
-              <motion.button
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsAssistantOpen(!isAssistantOpen)}
-              >
-                <Bot size={20} />
-              </motion.button>
+              {showAIJinni !== false && (
+                <motion.button
+                  className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsAssistantOpen(!isAssistantOpen)}
+                >
+                  <Bot size={20} />
+                </motion.button>
+              )}
               <motion.button
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
                 whileHover={{ scale: 1.1 }}
