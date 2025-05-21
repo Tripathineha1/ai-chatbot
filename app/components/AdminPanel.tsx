@@ -16,7 +16,7 @@ export default function AdminPanel() {
   const [isAIJinniOpen, setIsAIJinniOpen] = useState(true);
   const [jinniMessages, setJinniMessages] = useState<{question: string; answer: string; audio?: string}[]>([
     {
-      question: "How do I use AI Jinni?",
+      question: "How do I use SuperJinni?",
       answer: "You can ask me any questions about your customers, orders, or products. I can also help you draft responses to customer inquiries. Just type your question in the box below or use the voice recording feature."
     },
     {
@@ -142,7 +142,7 @@ export default function AdminPanel() {
           {isAIJinniOpen && (
             <div className="h-full overflow-y-auto flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-lg font-semibold">AI Jinni</h2>
+                <h2 className="text-lg font-semibold">SuperJinni</h2>
                 <button 
                   onClick={toggleAIJinni}
                   className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"

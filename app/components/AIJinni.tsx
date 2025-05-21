@@ -519,10 +519,14 @@ Please let me know what specific information you're looking for, and I'll be hap
             {jinniResponses.length === 0 && (
               <div className="flex items-center justify-center py-6 md:py-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">AI</span>
+                  <div className="w-24 h-24 mx-auto mb-3 flex items-center justify-center">
+                    <img 
+                      src="/superjinni-logo.svg" 
+                      alt="SuperJinni Logo" 
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                  <h3 className="text-lg font-medium dark:text-white">Hi, I'm AI Jinni</h3>
+                  <h3 className="text-lg font-medium dark:text-white">Hi, I'm SuperJinni</h3>
                   <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm md:text-base">
                     Your AI assistant to help with customer inquiries.
                   </p>

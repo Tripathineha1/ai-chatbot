@@ -104,7 +104,7 @@ export default function Header({ toggleSidebar, isSidebarOpen, activeView, setAc
             <motion.button 
               onClick={toggleAIJinni}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label={isAIJinniOpen ? "Hide AI Jinni" : "Show AI Jinni"}
+              aria-label={isAIJinniOpen ? "Hide SuperJinni" : "Show SuperJinni"}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
