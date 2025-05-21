@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8A2BE2"/>
+      <stop offset="50%" stop-color="#4169E1"/>
+      <stop offset="100%" stop-color="#00BFFF"/>
+    </linearGradient>
+  </defs>
+  <!-- Main swoosh shape -->
+  <path d="M2,12 C3,5 8,3 14,6 C18,1 24,3 28,10 C30,15 26,19 22,18 C18,20 14,21 10,19 C6,20 1,18 2,12 Z" 
+    fill="url(#gradient1)" stroke="none"/>
+  
+  <!-- Top circle (dot) -->
+  <circle cx="13" cy="3" r="2" fill="#4169E1"/>
+  
+  <!-- Bottom curve -->
+  <path d="M16,24 C19,27 13,27 16,24 Z" fill="#4169E1"/>
+</svg> 

@@ -16,6 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <title>SuperJinni - AI Customer Support</title>
+      </head>
       <body className={inter.className}>
         {children}
       </body>

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#8A2BE2"/>
-      <stop offset="30%" stop-color="#4169E1"/>
+      <stop offset="50%" stop-color="#4169E1"/>
       <stop offset="100%" stop-color="#00BFFF"/>
     </linearGradient>
   </defs>
-  <path d="M30,50 C40,30 60,30 70,45 C80,30 95,25 110,35 C130,10 170,30 180,65 C185,90 160,95 140,85 C120,100 90,105 70,85 C50,95 25,85 30,50 Z" fill="url(#gradient)" stroke="none"/>
-  <circle cx="130" cy="15" r="10" fill="#4169E1"/>
-  <path d="M100,90 C115,100 85,100 100,90 Z" fill="#4169E1"/>
+  <g transform="translate(25, 10)">
+    <!-- Main swoosh shape -->
+    <path d="M15,45 C20,20 45,15 70,25 C90,0 125,10 145,40 C155,60 140,75 120,70 C100,80 75,85 55,75 C35,80 10,70 15,45 Z" 
+      fill="url(#gradient1)" stroke="none"/>
+    
+    <!-- Top circle (dot) -->
+    <circle cx="65" cy="10" r="8" fill="#4169E1"/>
+    
+    <!-- Bottom curve -->
+    <path d="M80,85 C90,95 65,95 80,85 Z" fill="#4169E1"/>
+  </g>
 </svg> 
