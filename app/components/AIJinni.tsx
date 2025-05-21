@@ -9,6 +9,8 @@ interface AIJinniProps {
   onClose?: () => void;
   conversation?: any[];
   addToComposer?: (text: string) => void;
+  customMessages?: JinniMessage[];
+  onSendQuestion?: (question: string, answer: string, audio?: string) => void;
 }
 
 // Message interface with optional audio
@@ -18,10 +20,10 @@ interface JinniMessage {
   audio?: string;
 }
 
-export default function AIJinni({ isOpen, onClose, conversation, addToComposer }: AIJinniProps) {
+export default function AIJinni({ isOpen, onClose, conversation, addToComposer, customMessages, onSendQuestion }: AIJinniProps) {
   const [activeTab, setActiveTab] = useState<'jinni' | 'details'>('jinni');
   const [question, setQuestion] = useState('');
-  const [jinniResponses, setJinniResponses] = useState<JinniMessage[]>([]);
+  const [jinniResponses, setJinniResponses] = useState<JinniMessage[]>(customMessages || []);
   const [isTyping, setIsTyping] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(false);
   const [showScrollUp, setShowScrollUp] = useState(false);
@@ -31,6 +33,13 @@ export default function AIJinni({ isOpen, onClose, conversation, addToComposer }
   
   // Use an empty array if conversation is not provided
   const currentConversation = conversation || [];
+  
+  // Update jinniResponses when customMessages change
+  useEffect(() => {
+    if (customMessages) {
+      setJinniResponses(customMessages);
+    }
+  }, [customMessages]);
   
   // Voice recording states
   const [isRecording, setIsRecording] = useState(false);
@@ -232,7 +241,14 @@ Please let me know what specific information you're looking for, and I'll be hap
         responseText = "Thank you for your question. I've found some information that might help. Is there anything specific about this topic you'd like me to explain in more detail?";
       }
       
-      setJinniResponses(prev => [...prev, { question: userQuestion, answer: responseText }]);
+      const newResponse = { question: userQuestion, answer: responseText };
+      setJinniResponses(prev => [...prev, newResponse]);
+      
+      // Call the onSendQuestion callback if provided
+      if (onSendQuestion) {
+        onSendQuestion(userQuestion, responseText);
+      }
+      
       setIsTyping(false);
     }, 1500);
   };
@@ -342,6 +358,11 @@ Please let me know what specific information you're looking for, and I'll be hap
         updated[updated.length - 1].answer = responseText;
         return updated;
       });
+      
+      // Call onSendQuestion callback if provided
+      if (onSendQuestion) {
+        onSendQuestion(voiceMessageText, responseText, audioUrl);
+      }
       
       setIsTyping(false);
     }, 2000);
@@ -495,17 +516,28 @@ Please let me know what specific information you're looking for, and I'll be hap
       <div ref={contentRef} className="flex-1 overflow-y-auto p-4 jinni-scrollbar">
         {activeTab === 'jinni' ? (
           <div className="space-y-4">
-            <div className="flex items-center justify-center py-6 md:py-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-xl font-bold">AI</span>
+            {jinniResponses.length === 0 && (
+              <div className="flex items-center justify-center py-6 md:py-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">AI</span>
+                  </div>
+                  <h3 className="text-lg font-medium dark:text-white">Hi, I'm AI Jinni</h3>
+                  <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm md:text-base">
+                    Your AI assistant to help with customer inquiries.
+                  </p>
+                  <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 p-3 rounded-md text-sm text-blue-700 dark:text-blue-300">
+                    <p className="font-medium mb-2">Try asking me:</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>"How do I process a refund?"</li>
+                      <li>"Check shipping status for order #12345"</li>
+                      <li>"Help me draft a response about our return policy"</li>
+                      <li>"What plan is this customer on?"</li>
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="text-lg font-medium dark:text-white">Hi, I'm AI Jinni</h3>
-                <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm md:text-base">
-                  Ask me anything about this conversation.
-                </p>
               </div>
-            </div>
+            )}
             
             {/* Hidden audio player for voice messages */}
             <audio ref={audioPlayerRef} className="hidden" />

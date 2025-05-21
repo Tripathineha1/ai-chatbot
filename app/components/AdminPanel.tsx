@@ -14,6 +14,16 @@ export default function AdminPanel() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeView, setActiveView] = useState<'chat' | 'contacts'>('chat');
   const [isAIJinniOpen, setIsAIJinniOpen] = useState(true);
+  const [jinniMessages, setJinniMessages] = useState<{question: string; answer: string; audio?: string}[]>([
+    {
+      question: "How do I use AI Jinni?",
+      answer: "You can ask me any questions about your customers, orders, or products. I can also help you draft responses to customer inquiries. Just type your question in the box below or use the voice recording feature."
+    },
+    {
+      question: "What can you help me with?",
+      answer: "I can help you look up customer information, suggest responses, find relevant documentation, translate messages, provide order status updates, and much more. Feel free to ask me anything about your work!"
+    }
+  ]);
   
   // Check if we're on mobile
   useEffect(() => {
@@ -56,6 +66,11 @@ export default function AdminPanel() {
 
   const toggleAIJinni = () => {
     setIsAIJinniOpen(!isAIJinniOpen);
+  };
+
+  // Handle adding new AI Jinni messages
+  const addJinniMessage = (question: string, answer: string, audio?: string) => {
+    setJinniMessages(prev => [...prev, { question, answer, audio }]);
   };
 
   const mainContentVariants = {
@@ -124,18 +139,28 @@ export default function AdminPanel() {
           animate={{ width: isAIJinniOpen ? 300 : 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <div className="h-full overflow-y-auto p-4">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">AI Jinni</h2>
-              <button 
-                onClick={toggleAIJinni}
-                className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
-              >
-                ✕
-              </button>
+          {isAIJinniOpen && (
+            <div className="h-full overflow-y-auto flex flex-col">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 className="text-lg font-semibold">AI Jinni</h2>
+                <button 
+                  onClick={toggleAIJinni}
+                  className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="flex-grow overflow-y-auto">
+                <AIJinni
+                  isOpen={true}
+                  onClose={toggleAIJinni}
+                  conversation={activeChat && activeView === 'chat' ? [] : undefined}
+                  customMessages={jinniMessages}
+                  onSendQuestion={(question, answer) => addJinniMessage(question, answer)}
+                />
+              </div>
             </div>
-            <AIJinni />
-          </div>
+          )}
         </motion.div>
       )}
     </div>
