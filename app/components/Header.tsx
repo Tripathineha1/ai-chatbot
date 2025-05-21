@@ -103,12 +103,25 @@ export default function Header({ toggleSidebar, isSidebarOpen, activeView, setAc
           {toggleAIJinni && !isMobile && (
             <motion.button 
               onClick={toggleAIJinni}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center"
               aria-label={isAIJinniOpen ? "Hide SuperJinni" : "Show SuperJinni"}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Bot size={20} className={`text-gray-600 dark:text-gray-300 ${isAIJinniOpen ? 'text-blue-500 dark:text-blue-400' : ''}`} />
+              {isAIJinniOpen ? (
+                <Bot size={20} className="text-blue-500 dark:text-blue-400" />
+              ) : (
+                <div className="relative">
+                  <Bot size={20} className="text-gray-600 dark:text-gray-300" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3">
+                    <img 
+                      src="/superjinni-logo.svg" 
+                      alt="SuperJinni Logo" 
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+              )}
             </motion.button>
           )}
           

@@ -142,7 +142,14 @@ export default function AdminPanel() {
           {isAIJinniOpen && (
             <div className="h-full overflow-y-auto flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-lg font-semibold">SuperJinni</h2>
+                <div className="flex items-center">
+                  <img 
+                    src="/superjinni-logo.svg" 
+                    alt="SuperJinni Logo" 
+                    className="w-7 h-7 mr-2"
+                  />
+                  <h2 className="text-lg font-semibold">SuperJinni</h2>
+                </div>
                 <button 
                   onClick={toggleAIJinni}
                   className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
