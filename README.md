@@ -2,11 +2,11 @@
 
 A modern, responsive admin panel for an AI-enhanced chatbot system, inspired by Intercom's interface. This project showcases a clean UI with real-time chat capabilities, AI assistance features, and a comprehensive admin dashboard.
 
-![Intercom-like AI Chatbot](https://ai-chatbot-tripathineha1.vercel.app/screenshot.png) <!-- Screenshot of deployed application -->
+![Intercom-like AI Chatbot](https://ai-chatbot-7wrk5geip-tripathineha1s-projects.vercel.app/screenshot.png) <!-- Screenshot of deployed application -->
 
 ## Live Demo
 
-[View the live demo here](https://ai-chatbot-tripathineha1.vercel.app) <!-- Deployed on Vercel -->
+[View the live demo here](https://ai-chatbot-7wrk5geip-tripathineha1s-projects.vercel.app) <!-- Deployed on Vercel -->
 
 ## Features
 
